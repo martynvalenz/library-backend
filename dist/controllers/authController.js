@@ -161,7 +161,7 @@ const userData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const date = luxon_1.DateTime.fromISO(now, { zone: timezone }).toFormat('yyyy-MM-dd');
         const time = luxon_1.DateTime.fromISO(now, { zone: timezone }).toFormat('HH:mm:ss');
         yield models_1.User.findByIdAndUpdate(uid, { lastLogin: `${date} ${time}` });
-        const user = yield models_1.User.findById(uid).select('initials name lastName email color');
+        const user = yield models_1.User.findById(uid).select('initials name lastName email color role');
         const categories = yield models_1.Category.find().sort({ category: 1 });
         const books = yield models_1.Book.find()
             .sort({ title: 1 })

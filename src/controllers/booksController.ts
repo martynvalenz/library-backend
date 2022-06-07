@@ -1,6 +1,6 @@
 import {Request, Response} from 'express';
 import { makeSlug } from '../helpers/slugify';
-import { Book } from '../models';
+import { Book, Category } from '../models';
 
 export const storeBook = async(req:Request, res:Response) => {
   try {
@@ -17,6 +17,9 @@ export const storeBook = async(req:Request, res:Response) => {
     data.slug = await makeSlug(data.title);
     data.userId = uid;
     const newBook = await Book.create(data);
+    await Category.findByIdAndUpdate(data.categoryId,{
+      $inc: { books: 1 }
+    });
     const book = await Book.findById(newBook._id)
       .populate([
         {path:'userId',select:'id name lastName'},

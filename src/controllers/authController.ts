@@ -157,7 +157,7 @@ export const userData = async(req:Request, res:Response) => {
     const date = DateTime.fromISO(now, { zone: timezone }).toFormat('yyyy-MM-dd');
     const time = DateTime.fromISO(now, { zone: timezone }).toFormat('HH:mm:ss');
     await User.findByIdAndUpdate(uid,{lastLogin:`${date} ${time}`});
-    const user = await User.findById(uid).select('initials name lastName email color');
+    const user = await User.findById(uid).select('initials name lastName email color role');
 
     const categories = await Category.find().sort({category:1})
     const books = await Book.find()

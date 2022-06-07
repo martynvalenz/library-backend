@@ -36,6 +36,9 @@ const storeBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         data.slug = yield (0, slugify_1.makeSlug)(data.title);
         data.userId = uid;
         const newBook = yield models_1.Book.create(data);
+        yield models_1.Category.findByIdAndUpdate(data.categoryId, {
+            $inc: { books: 1 }
+        });
         const book = yield models_1.Book.findById(newBook._id)
             .populate([
             { path: 'userId', select: 'id name lastName' },
