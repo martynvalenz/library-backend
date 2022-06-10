@@ -71,7 +71,11 @@ const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const initials = `${data.name.charAt(0)}${data.lastName.charAt(0)}`;
         data.color = yield (0, getRandomColors_1.default)();
         const lastLogin = new Date();
-        Object.assign(data, { initials, lastLogin });
+        let role = 'User';
+        if (data.createAdmin) {
+            role = 'Admin';
+        }
+        Object.assign(data, { initials, lastLogin, role });
         const salt = bcrypt_1.default.genSaltSync();
         data.password = bcrypt_1.default.hashSync(data.password, salt);
         const user = yield models_1.User.create(data);
@@ -169,10 +173,15 @@ const userData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             { path: 'userId', select: 'id name lastName' },
             { path: 'categoryId', select: 'id category slug' },
         ]);
+        let users = [];
+        if (user.role === 'Admin') {
+            users = yield models_1.User.find().select('id initials name lastName email color loans hasAccess role').sort({ name: 1 });
+        }
         res.send({
             user,
             categories,
-            books
+            books,
+            users,
         });
     }
     catch (error) {

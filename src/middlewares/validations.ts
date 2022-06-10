@@ -41,6 +41,26 @@ export const loginRequest = (req:Request, res:Response, next:any) => {
   });
 }
 
+export const updateUserRequest = (req:Request, res:Response, next:any) => {
+  const validationRule = {
+    "name": "required",
+    "lastName": "required",
+    "email":"required"
+  }
+  validator(req.body, validationRule, {}, (err:any, status:any) => {
+    if (!status) {
+      res.status(400)
+      .send({
+        success: false,
+        msg: 'Cannot save the user, check the fields',
+        errors: err.errors
+      });
+      return;
+    }
+    next();
+  });
+}
+
 export const categoryRequest = (req:Request, res:Response, next:any) => {
   const validationRule = {
     "category":"required",

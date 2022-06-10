@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.storeBookRequest = exports.categoryRequest = exports.loginRequest = exports.registerRequest = void 0;
+exports.storeBookRequest = exports.categoryRequest = exports.updateUserRequest = exports.loginRequest = exports.registerRequest = void 0;
 const validate_1 = __importDefault(require("./validate"));
 const registerRequest = (req, res, next) => {
     const validationRule = {
@@ -45,6 +45,26 @@ const loginRequest = (req, res, next) => {
     });
 };
 exports.loginRequest = loginRequest;
+const updateUserRequest = (req, res, next) => {
+    const validationRule = {
+        "name": "required",
+        "lastName": "required",
+        "email": "required"
+    };
+    (0, validate_1.default)(req.body, validationRule, {}, (err, status) => {
+        if (!status) {
+            res.status(400)
+                .send({
+                success: false,
+                msg: 'Cannot save the user, check the fields',
+                errors: err.errors
+            });
+            return;
+        }
+        next();
+    });
+};
+exports.updateUserRequest = updateUserRequest;
 const categoryRequest = (req, res, next) => {
     const validationRule = {
         "category": "required",

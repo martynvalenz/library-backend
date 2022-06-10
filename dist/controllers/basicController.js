@@ -11,7 +11,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.functioner = void 0;
 const functioner = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    //
+    try {
+    }
+    catch (error) {
+        res.status(500).json({
+            message: 'Error in the server',
+            error
+        });
+    }
 });
 exports.functioner = functioner;
 //# sourceMappingURL=basicController.js.map

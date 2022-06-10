@@ -43,6 +43,7 @@ const userSchema = new mongoose_1.default.Schema({
     password: { type: String },
     color: { type: String },
     role: { type: String, enum: ['Admin', 'User'], default: 'User' },
+    loans: { type: Number, default: 0 },
     isActive: { type: Boolean, default: true },
     hasAccess: { type: Boolean, default: true },
     lastLogin: { type: Date },

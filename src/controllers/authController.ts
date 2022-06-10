@@ -54,8 +54,12 @@ export const signUp = async(req:Request, res:Response) => {
     const initials = `${data.name.charAt(0)}${data.lastName.charAt(0)}`
     data.color = await randomColor();
     const lastLogin = new Date();
+    let role = 'User';
+    if(data.createAdmin){
+      role = 'Admin';
+    }
 
-    Object.assign(data,{initials,lastLogin});
+    Object.assign(data,{initials,lastLogin,role});
     const salt = bcrypt.genSaltSync();
     data.password = bcrypt.hashSync(data.password, salt);
 
@@ -167,10 +171,17 @@ export const userData = async(req:Request, res:Response) => {
         {path:'categoryId',select:'id category slug'},
       ]);
 
+    let users:any = [];
+
+    if(user.role === 'Admin'){
+      users = await User.find().select('id initials name lastName email color loans hasAccess role').sort({name:1});
+    }
+
     res.send({
       user,
       categories,
-      books
+      books,
+      users,
     })
 
   } catch (error) {

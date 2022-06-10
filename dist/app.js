@@ -19,6 +19,7 @@ const dbConnect_1 = __importDefault(require("./config/dbConnect"));
 // routes
 const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
 const bookRoutes_1 = __importDefault(require("./routes/bookRoutes"));
+const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 const categoryRoutes_1 = __importDefault(require("./routes/categoryRoutes"));
 // MongoDB connection
 const dbConnection = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -44,6 +45,7 @@ app.get('/', (req, res) => {
 });
 app.use('/api/auth', authRoutes_1.default);
 app.use('/api/books', bookRoutes_1.default);
+app.use('/api/users', userRoutes_1.default);
 app.use('/api/categories', categoryRoutes_1.default);
 app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
