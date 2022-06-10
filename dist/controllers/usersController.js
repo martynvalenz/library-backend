@@ -19,10 +19,14 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateUser = exports.storeUser = void 0;
+exports.updateUser = exports.getAccount = exports.storeUser = void 0;
 const models_1 = require("../models");
 const authController_1 = require("./authController");
+const bcrypt_1 = __importDefault(require("bcrypt"));
 const storeUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         (0, authController_1.signUp)(req, res);
@@ -35,6 +39,22 @@ const storeUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.storeUser = storeUser;
+const getAccount = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { uid } = req.body;
+        const user = yield models_1.User.findById(uid);
+        res.send({
+            user
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            message: 'Error in the server',
+            error
+        });
+    }
+});
+exports.getAccount = getAccount;
 const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
@@ -50,7 +70,32 @@ const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 msg: 'The email is already being used by an existing user'
             });
         }
-        const user = yield models_1.User.findByIdAndUpdate(id, data);
+        const initials = `${data.name.charAt(0)}${data.lastName.charAt(0)}`;
+        data.initials = initials;
+        if (data.password) {
+            const salt = bcrypt_1.default.genSaltSync();
+            data.password = bcrypt_1.default.hashSync(data.password, salt);
+            yield models_1.User.findByIdAndUpdate(id, {
+                name: data.name,
+                lastName: data.lastName,
+                email: data.email,
+                initials: data.initials,
+                hasAccess: data.hasAccess,
+                password: data.password,
+                role: data.role,
+            });
+        }
+        else {
+            yield models_1.User.findByIdAndUpdate(id, {
+                name: data.name,
+                lastName: data.lastName,
+                email: data.email,
+                initials: data.initials,
+                hasAccess: data.hasAccess,
+                role: data.role,
+            });
+        }
+        const user = yield models_1.User.findById(id);
         res.send({
             user
         });
