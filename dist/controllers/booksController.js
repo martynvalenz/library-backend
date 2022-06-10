@@ -20,7 +20,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.storeBook = void 0;
+exports.updateBook = exports.editBook = exports.storeBook = void 0;
 const slugify_1 = require("../helpers/slugify");
 const models_1 = require("../models");
 const storeBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -56,4 +56,64 @@ const storeBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.storeBook = storeBook;
+const editBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const book = yield models_1.Book.findById(id);
+        res.send({
+            book
+        });
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({
+            msg: 'Server Error, contact support'
+        });
+    }
+});
+exports.editBook = editBook;
+const updateBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const _b = req.body, { uid } = _b, data = __rest(_b, ["uid"]);
+        const checkTitle = yield models_1.Book.findOne({
+            $and: [
+                { title: data.title, _id: { $ne: id } },
+            ]
+        });
+        if (checkTitle) {
+            return res.status(400).json({
+                success: false,
+                msg: 'Book title already exists',
+            });
+        }
+        const checkCategory = yield models_1.Book.findById(id).select('categoryId');
+        if (checkCategory.categoryId !== data.categoryId) {
+            yield models_1.Category.findByIdAndUpdate(checkCategory.categoryId, {
+                $inc: { books: -1 }
+            });
+            yield models_1.Category.findByIdAndUpdate(data.categoryId, {
+                $inc: { books: 1 }
+            });
+        }
+        data.slug = yield (0, slugify_1.makeSlug)(data.title);
+        data.userId = uid;
+        const updateBook = yield models_1.Book.findByIdAndUpdate(id, data);
+        const book = yield models_1.Book.findById(updateBook._id)
+            .populate([
+            { path: 'userId', select: 'id name lastName' },
+            { path: 'categoryId', select: 'id category slug' },
+        ]);
+        res.send({
+            book
+        });
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({
+            msg: 'Server Error, contact support'
+        });
+    }
+});
+exports.updateBook = updateBook;
 //# sourceMappingURL=booksController.js.map
