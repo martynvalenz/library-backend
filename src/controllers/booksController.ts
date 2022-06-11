@@ -2,6 +2,24 @@ import {Request, Response} from 'express';
 import { makeSlug } from '../helpers/slugify';
 import { Book, Category } from '../models';
 
+export const getBooks = async(req:Request, res:Response) => {
+  try {
+    const {search,limit,page} = req.body;
+    const results = await Book.paginate({isActive:true},{limit:parseInt(limit),page:parseInt(page)});
+    
+
+    res.send({
+      results
+    });
+    
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error in the server',
+      error
+    });
+  }
+}
+
 export const storeBook = async(req:Request, res:Response) => {
   try {
     const {uid,...data} = req.body;
@@ -75,8 +93,8 @@ export const updateBook = async(req:Request, res:Response) => {
     }
     
     const checkCategory = await Book.findById(id).select('categoryId');
-    if(checkCategory.categoryId !== data.categoryId){
-      await Category.findByIdAndUpdate(checkCategory.categoryId,{
+    if(checkCategory?.categoryId !== data.categoryId){
+      await Category.findByIdAndUpdate(checkCategory?.categoryId,{
         $inc: { books: -1 }
       });
       await Category.findByIdAndUpdate(data.categoryId,{
@@ -87,7 +105,7 @@ export const updateBook = async(req:Request, res:Response) => {
     data.slug = await makeSlug(data.title);
     data.userId = uid;
     const updateBook = await Book.findByIdAndUpdate(id,data);
-    const book = await Book.findById(updateBook._id)
+    const book = await Book.findById(updateBook?._id)
       .populate([
         {path:'userId',select:'id name lastName'},
         {path:'categoryId',select:'id category slug'},

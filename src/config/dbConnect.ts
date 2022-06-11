@@ -1,13 +1,6 @@
 import mongoose from 'mongoose';
 
 const dbMongo = async() => {
-  // const options = {
-  //   useNewUrlParser: true,
-  //   useUnifiedTopology: true,
-  //   useCreateIndex:true,
-  //   useFindAndModify:false,
-  // }
-
   try {
     await mongoose.connect(process.env.DB_CONNECTION!)
     console.log('✅  MongoDB online');

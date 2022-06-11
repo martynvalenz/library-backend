@@ -1,4 +1,16 @@
-import mongoose, {Schema, model} from 'mongoose';
+import mongoose, {Schema, model, PaginateModel} from 'mongoose';
+import paginate from 'mongoose-paginate-v2';
+
+export interface IBook extends mongoose.Document {
+  title: string; 
+  slug: string; 
+  coverImage: string; 
+  author: string; 
+  year: number;
+  categoryId: string;
+  userId: string;
+  isActive: boolean; 
+};
 
 const BookSchema = new mongoose.Schema({
   title:{type:String},
@@ -19,6 +31,14 @@ BookSchema.methods.toJSON = function(){
   data.id = _id;
   return data;
 }
+BookSchema.plugin(paginate);
 
-const Book = model('Book',BookSchema,'books');
+// paginate with this plugin
+interface InstitutionDocument extends Document, IBook {}
+
+const Book = mongoose.model<
+InstitutionDocument,
+PaginateModel<InstitutionDocument>
+>('Book',BookSchema,'books');
+
 export default Book;

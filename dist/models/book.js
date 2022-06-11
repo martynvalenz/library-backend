@@ -33,8 +33,13 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
+const mongoose_paginate_v2_1 = __importDefault(require("mongoose-paginate-v2"));
+;
 const BookSchema = new mongoose_1.default.Schema({
     title: { type: String },
     slug: { type: String },
@@ -53,6 +58,7 @@ BookSchema.methods.toJSON = function () {
     data.id = _id;
     return data;
 };
-const Book = (0, mongoose_1.model)('Book', BookSchema, 'books');
+BookSchema.plugin(mongoose_paginate_v2_1.default);
+const Book = mongoose_1.default.model('Book', BookSchema, 'books');
 exports.default = Book;
 //# sourceMappingURL=book.js.map

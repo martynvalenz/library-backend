@@ -20,9 +20,25 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateBook = exports.editBook = exports.storeBook = void 0;
+exports.updateBook = exports.editBook = exports.storeBook = exports.getBooks = void 0;
 const slugify_1 = require("../helpers/slugify");
 const models_1 = require("../models");
+const getBooks = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { search, limit, page } = req.body;
+        const results = yield models_1.Book.paginate({ isActive: true }, { limit: parseInt(limit), page: parseInt(page) });
+        res.send({
+            results
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            message: 'Error in the server',
+            error
+        });
+    }
+});
+exports.getBooks = getBooks;
 const storeBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const _a = req.body, { uid } = _a, data = __rest(_a, ["uid"]);
@@ -88,8 +104,8 @@ const updateBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             });
         }
         const checkCategory = yield models_1.Book.findById(id).select('categoryId');
-        if (checkCategory.categoryId !== data.categoryId) {
-            yield models_1.Category.findByIdAndUpdate(checkCategory.categoryId, {
+        if ((checkCategory === null || checkCategory === void 0 ? void 0 : checkCategory.categoryId) !== data.categoryId) {
+            yield models_1.Category.findByIdAndUpdate(checkCategory === null || checkCategory === void 0 ? void 0 : checkCategory.categoryId, {
                 $inc: { books: -1 }
             });
             yield models_1.Category.findByIdAndUpdate(data.categoryId, {
@@ -99,7 +115,7 @@ const updateBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         data.slug = yield (0, slugify_1.makeSlug)(data.title);
         data.userId = uid;
         const updateBook = yield models_1.Book.findByIdAndUpdate(id, data);
-        const book = yield models_1.Book.findById(updateBook._id)
+        const book = yield models_1.Book.findById(updateBook === null || updateBook === void 0 ? void 0 : updateBook._id)
             .populate([
             { path: 'userId', select: 'id name lastName' },
             { path: 'categoryId', select: 'id category slug' },
