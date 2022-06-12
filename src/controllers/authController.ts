@@ -1,9 +1,9 @@
 import {Request, Response} from 'express';
 import randomColor from '../helpers/getRandomColors';
-import { Book, Category, User } from '../models';
+import { Book, Cart, Loan, Category, Favorite, User, Notification } from '../models';
 import bcrypt from 'bcrypt';
 import { generateJWT } from '../helpers/generateJWT';
-import luxon,{DateTime} from 'luxon';
+import {DateTime} from 'luxon';
 
 export const createSecretAdmin = async(req:Request, res:Response) => {
   const {...data} = req.body
@@ -164,24 +164,55 @@ export const userData = async(req:Request, res:Response) => {
     const user = await User.findById(uid).select('initials name lastName email color role');
 
     const categories = await Category.find().sort({category:1})
-    const books = await Book.find()
-      .sort({title:1})
+
+    const favorites = await Favorite.find({userId:uid})
       .populate([
-        {path:'userId',select:'id name lastName'},
-        {path:'categoryId',select:'id category slug'},
+        {path:'bookId',select:'id title slug coverImage author year  categoryId userId isActive stock'},
       ]);
 
-    let users:any = [];
+    const cart = await Cart.find({userId:uid}).select('id userId bookId');
+    const cartBooks = new Array<any>();
+    await Promise.all(cart.map(async (obj:any) => {
+      const book = await Book.findById(obj.bookId)
+        .populate([
+          {path:'userId',select:'id name lastName'},
+          {path:'categoryId',select:'id category slug'},
+        ]);
+        cartBooks.push(book);
+    }));
 
+    const loans = await Loan.find({userId:uid,status:'Loan'}).select('id userId bookId');
+    const loanBooks = new Array<any>();
+    await Promise.all(loans.map(async (obj:any) => {
+      const book = await Book.findById(obj.bookId)
+        .populate([
+          {path:'userId',select:'id name lastName'},
+          {path:'categoryId',select:'id category slug'},
+        ]);
+        loanBooks.push(book);
+    }));
+
+    let users:any = [];
     if(user.role === 'Admin'){
       users = await User.find().select('id initials name lastName email color loans hasAccess role').sort({name:1});
+    }
+
+    let notifications = new Array<any>();
+    if(user.role === 'Admin'){
+      notifications = await Notification.find().sort({createdAt:1})
+        .populate([
+          {path:'userId',select:'id initials name lastName color'},
+        ])
     }
 
     res.send({
       user,
       categories,
-      books,
       users,
+      favorites,
+      cartBooks,
+      loanBooks,
+      notifications,
     })
 
   } catch (error) {

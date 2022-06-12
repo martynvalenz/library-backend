@@ -167,21 +167,49 @@ const userData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         yield models_1.User.findByIdAndUpdate(uid, { lastLogin: `${date} ${time}` });
         const user = yield models_1.User.findById(uid).select('initials name lastName email color role');
         const categories = yield models_1.Category.find().sort({ category: 1 });
-        const books = yield models_1.Book.find()
-            .sort({ title: 1 })
+        const favorites = yield models_1.Favorite.find({ userId: uid })
             .populate([
-            { path: 'userId', select: 'id name lastName' },
-            { path: 'categoryId', select: 'id category slug' },
+            { path: 'bookId', select: 'id title slug coverImage author year  categoryId userId isActive stock' },
         ]);
+        const cart = yield models_1.Cart.find({ userId: uid }).select('id userId bookId');
+        const cartBooks = new Array();
+        yield Promise.all(cart.map((obj) => __awaiter(void 0, void 0, void 0, function* () {
+            const book = yield models_1.Book.findById(obj.bookId)
+                .populate([
+                { path: 'userId', select: 'id name lastName' },
+                { path: 'categoryId', select: 'id category slug' },
+            ]);
+            cartBooks.push(book);
+        })));
+        const loans = yield models_1.Loan.find({ userId: uid, status: 'Loan' }).select('id userId bookId');
+        const loanBooks = new Array();
+        yield Promise.all(loans.map((obj) => __awaiter(void 0, void 0, void 0, function* () {
+            const book = yield models_1.Book.findById(obj.bookId)
+                .populate([
+                { path: 'userId', select: 'id name lastName' },
+                { path: 'categoryId', select: 'id category slug' },
+            ]);
+            loanBooks.push(book);
+        })));
         let users = [];
         if (user.role === 'Admin') {
             users = yield models_1.User.find().select('id initials name lastName email color loans hasAccess role').sort({ name: 1 });
         }
+        let notifications = new Array();
+        if (user.role === 'Admin') {
+            notifications = yield models_1.Notification.find().sort({ createdAt: 1 })
+                .populate([
+                { path: 'userId', select: 'id initials name lastName color' },
+            ]);
+        }
         res.send({
             user,
             categories,
-            books,
             users,
+            favorites,
+            cartBooks,
+            loanBooks,
+            notifications,
         });
     }
     catch (error) {

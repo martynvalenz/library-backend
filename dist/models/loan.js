@@ -35,19 +35,22 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
-const categorySchema = new mongoose_1.default.Schema({
-    category: { type: String },
-    slug: { type: String },
-    books: { type: Number, default: 0 },
-    isActive: { type: Boolean, default: true },
+const loanSchema = new mongoose_1.default.Schema({
+    userId: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User', default: null },
+    authorizedId: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User', default: null },
+    receivedId: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User', default: null },
+    bookId: { type: mongoose_1.Schema.Types.ObjectId, ref: 'Book', default: null },
+    quantity: { type: Number, default: 1 },
+    turnInDate: { type: Date, default: null },
+    status: { type: String, enum: ['Loan', 'TurnedIn'], default: 'Loan' },
 }, {
     timestamps: true
 });
-categorySchema.methods.toJSON = function () {
+loanSchema.methods.toJSON = function () {
     const _a = this.toObject(), { __v, _id } = _a, data = __rest(_a, ["__v", "_id"]);
     data.id = _id;
     return data;
 };
-const Category = (0, mongoose_1.model)('Category', categorySchema, 'categories');
-exports.default = Category;
-//# sourceMappingURL=category.js.map
+const Loan = (0, mongoose_1.model)('Loan', loanSchema, 'loans');
+exports.default = Loan;
+//# sourceMappingURL=loan.js.map

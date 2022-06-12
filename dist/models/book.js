@@ -54,7 +54,7 @@ const BookSchema = new mongoose_1.default.Schema({
     timestamps: true
 });
 BookSchema.methods.toJSON = function () {
-    const _a = this.toObject(), { __v, _id, password } = _a, data = __rest(_a, ["__v", "_id", "password"]);
+    const _a = this.toObject(), { __v, _id } = _a, data = __rest(_a, ["__v", "_id"]);
     data.id = _id;
     return data;
 };

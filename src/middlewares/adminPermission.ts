@@ -1,5 +1,4 @@
 import { Response,Request } from 'express';
-import jwt from 'jsonwebtoken';
 import { User } from '../models';
 
 export const adminPermission = async(req:Request,res:Response, next:any) => {
