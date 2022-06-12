@@ -1,0 +1,421 @@
+[{
+  "_id": {
+    "$oid": "629f0c9adcefe8cb0b929363"
+  },
+  "title": "El hombre más rico de babilonia",
+  "slug": "el-hombre-mas-rico-de-babilonia",
+  "coverImage": "https://images-na.ssl-images-amazon.com/images/I/81m5iLQot3L.jpg",
+  "author": "George S. Clason",
+  "year": 2000,
+  "stock": 0,
+  "categoryId": {
+    "$oid": "629f0499431a8b5c6b7cc8fd"
+  },
+  "userId": {
+    "$oid": "629ed125a083747b85ed29fc"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654590618897"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1654961645208"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "629f0f76dcefe8cb0b9293a3"
+  },
+  "title": "Dominando los hábitos de Rockefeller",
+  "slug": "dominando-los-habitos-de-rockefeller",
+  "coverImage": "https://img1.od-cdn.com/ImageType-100/1490-1/%7BDB053B9B-B2BF-4AE1-BB0B-CE75219D5134%7DImg100.jpg",
+  "author": "Verne Harnish",
+  "year": 2000,
+  "stock": 0,
+  "categoryId": {
+    "$oid": "629ef9007b6e0ca18723ee88"
+  },
+  "userId": {
+    "$oid": "629ed125a083747b85ed29fc"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654591350258"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655071168351"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a40c06e9b2d253fbb18575"
+  },
+  "title": "Algebra de Baldor",
+  "slug": "algebra-de-baldor",
+  "coverImage": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Baldor.jpg",
+  "author": "Baldor",
+  "year": 2000,
+  "stock": 3,
+  "categoryId": {
+    "$oid": "629ef9007b6e0ca18723ee88"
+  },
+  "userId": {
+    "$oid": "629ed125a083747b85ed29fc"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654918150801"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655071168353"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a40c78e9b2d253fbb1857e"
+  },
+  "title": "El Principito",
+  "slug": "el-principito",
+  "coverImage": "https://m.media-amazon.com/images/I/51XQ5Q4CgBL.jpg",
+  "author": "Antoine de Saint-Exupery",
+  "year": 1992,
+  "stock": 5,
+  "categoryId": {
+    "$oid": "629ef9007b6e0ca18723ee88"
+  },
+  "userId": {
+    "$oid": "629ed125a083747b85ed29fc"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654918264652"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655071168352"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a40ca9e9b2d253fbb18587"
+  },
+  "title": "El método Lean Startup",
+  "slug": "el-metodo-lean-startup",
+  "coverImage": "https://m.media-amazon.com/images/I/41+5Z1FRiZL._SY346_.jpg",
+  "author": "Eric Ries",
+  "year": 1987,
+  "stock": 3,
+  "categoryId": {
+    "$oid": "629f0499431a8b5c6b7cc8fd"
+  },
+  "userId": {
+    "$oid": "629ed125a083747b85ed29fc"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654918313952"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655070803144"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a40ccee9b2d253fbb18590"
+  },
+  "title": "UNSCRIPTED: Life, Liberty, and the Pursuit of Entrepreneurship",
+  "slug": "unscripted-life-liberty-and-the-pursuit-of-entrepreneurship",
+  "coverImage": "https://m.media-amazon.com/images/I/51soJ0lJrLL.jpg",
+  "author": "MJ DeMarco",
+  "year": 2004,
+  "stock": 10,
+  "categoryId": {
+    "$oid": "629f0499431a8b5c6b7cc8fd"
+  },
+  "userId": {
+    "$oid": "629ed125a083747b85ed29fc"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654918350654"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655071141425"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a40cf1e9b2d253fbb18599"
+  },
+  "title": "Cómo no escribir una novela",
+  "slug": "como-no-escribir-una-novela",
+  "coverImage": "https://m.media-amazon.com/images/I/41U1-0WYvKL.jpg",
+  "author": "Sandra Newman",
+  "year": 1996,
+  "stock": 3,
+  "categoryId": {
+    "$oid": "629ef9007b6e0ca18723ee88"
+  },
+  "userId": {
+    "$oid": "629ed125a083747b85ed29fc"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654918385758"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655070428490"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a40d22e9b2d253fbb185a7"
+  },
+  "title": "Fundamentos de Branding",
+  "slug": "fundamentos-de-branding",
+  "coverImage": "https://m.media-amazon.com/images/I/413PGBBQE2L.jpg",
+  "author": "Javier Casanoves Boix",
+  "year": 2017,
+  "stock": 20,
+  "categoryId": {
+    "$oid": "62a40d04e9b2d253fbb185a2"
+  },
+  "userId": {
+    "$oid": "629ed125a083747b85ed29fc"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654918434718"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655070428490"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a40d43e9b2d253fbb185b0"
+  },
+  "title": "Disrupción: Más allá de la innovación",
+  "slug": "disrupcion-mas-alla-de-la-innovacion",
+  "coverImage": "https://m.media-amazon.com/images/I/4101T0cqy+L.jpg",
+  "author": "Mario Borghino",
+  "year": 2018,
+  "stock": 5,
+  "categoryId": {
+    "$oid": "62a40d04e9b2d253fbb185a2"
+  },
+  "userId": {
+    "$oid": "629ed125a083747b85ed29fc"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654918467392"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655070194610"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a40d5de9b2d253fbb185b9"
+  },
+  "title": "Megacapitalistas: La élite que domina el dinero y el mundo",
+  "slug": "megacapitalistas-la-elite-que-domina-el-dinero-y-el-mundo",
+  "coverImage": "https://m.media-amazon.com/images/I/51T-xEH-KvL.jpg",
+  "author": "Peter Phillips",
+  "year": 2019,
+  "stock": 7,
+  "categoryId": {
+    "$oid": "62a40d04e9b2d253fbb185a2"
+  },
+  "userId": {
+    "$oid": "629ed125a083747b85ed29fc"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654918493837"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1654918493837"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a40d84e9b2d253fbb185c2"
+  },
+  "title": "El enemigo conoce el sistema",
+  "slug": "el-enemigo-conoce-el-sistema",
+  "coverImage": "https://m.media-amazon.com/images/I/41A7hVVnyPL.jpg",
+  "author": "Marta Peirano",
+  "year": 2019,
+  "stock": 3,
+  "categoryId": {
+    "$oid": "62a40d04e9b2d253fbb185a2"
+  },
+  "userId": {
+    "$oid": "629ed125a083747b85ed29fc"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654918532588"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1654918532588"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a40da4e9b2d253fbb185cb"
+  },
+  "title": "Todo lo que he aprendido con la psicología económica",
+  "slug": "todo-lo-que-he-aprendido-con-la-psicologia-economica",
+  "coverImage": "https://m.media-amazon.com/images/I/517iI3DUoqL.jpg",
+  "author": "Richard H. Thaler",
+  "year": 2016,
+  "stock": 31,
+  "categoryId": {
+    "$oid": "629f0499431a8b5c6b7cc8fd"
+  },
+  "userId": {
+    "$oid": "629ed125a083747b85ed29fc"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654918564422"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1654918564422"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a40defe9b2d253fbb185dc"
+  },
+  "title": "The Power of Full Engagement",
+  "slug": "the-power-of-full-engagement",
+  "coverImage": "https://m.media-amazon.com/images/I/51baFNrzBvL.jpg",
+  "author": "Jim Loehr",
+  "year": 2003,
+  "stock": 5,
+  "categoryId": {
+    "$oid": "62a40d04e9b2d253fbb185a2"
+  },
+  "userId": {
+    "$oid": "629ed125a083747b85ed29fc"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654918639601"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1654918639601"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a40e0de9b2d253fbb185e5"
+  },
+  "title": "The Psychology of Money",
+  "slug": "the-psychology-of-money",
+  "coverImage": "https://m.media-amazon.com/images/I/41y1sBiezmL.jpg",
+  "author": "Morgan Housel",
+  "year": 2020,
+  "stock": 8,
+  "categoryId": {
+    "$oid": "62a40d04e9b2d253fbb185a2"
+  },
+  "userId": {
+    "$oid": "629ed125a083747b85ed29fc"
+  },
+  "isActive": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654918669433"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1654961804364"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a40e4ee9b2d253fbb185ee"
+  },
+  "title": "Harry Potter y la piedra filosofal",
+  "slug": "harry-potter-y-la-piedra-filosofal",
+  "coverImage": "https://m.media-amazon.com/images/I/51uxZ1EkT4L.jpg",
+  "author": "JK Rowling",
+  "year": 2015,
+  "stock": 15,
+  "categoryId": {
+    "$oid": "629efa270c3e2acdac4597e0"
+  },
+  "userId": {
+    "$oid": "629ed125a083747b85ed29fc"
+  },
+  "isActive": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654918734933"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1654918734933"
+    }
+  },
+  "__v": 0
+}]

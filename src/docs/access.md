@@ -20,5 +20,5 @@ heroku config:unset VARIABLE
 ```
 ### Config Mongo Compass DB
 ```
-mongodb+srv://<user>:<password>@cluster0.sy2bp.mongodb.net/?retryWrites=true&w=majority
+heroku config:set DB_CONNECTION="mongodb+srv://<user>:<password>@cluster0.sy2bp.mongodb.net/<dataBase>?retryWrites=true&w=majority"
 ```

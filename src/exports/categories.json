@@ -1,0 +1,77 @@
+[{
+  "_id": {
+    "$oid": "629ef9007b6e0ca18723ee88"
+  },
+  "category": "Educational",
+  "slug": "educational",
+  "books": 4,
+  "isActive": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654585600718"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1654918385763"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "629efa270c3e2acdac4597e0"
+  },
+  "category": "Science Fiction",
+  "slug": "science-fiction",
+  "books": 1,
+  "isActive": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654585895018"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1654918734936"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "629f0499431a8b5c6b7cc8fd"
+  },
+  "category": "Finances",
+  "slug": "finances",
+  "books": 4,
+  "isActive": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654588569568"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1654961645206"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62a40d04e9b2d253fbb185a2"
+  },
+  "category": "Business",
+  "slug": "business",
+  "books": 6,
+  "isActive": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1654918404530"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1654961804349"
+    }
+  },
+  "__v": 0
+}]
